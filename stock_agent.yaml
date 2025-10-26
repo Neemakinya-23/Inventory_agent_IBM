@@ -1,0 +1,22 @@
+# Orchestration instructions for the inventory agent
+# Describe how the agent should respond to inventory queries and updates.
+agent:
+  name: quickmart-inventory-agent
+  description: |-
+    An agent that manages quickmart inventory. Supports queries for product stock,
+    updates to stock levels, and simple notifications when stock is low.
+  entrypoint: inventory_tools.get_stock
+  endpoints:
+    - name: get_stock
+      path: /api/stock
+      method: GET
+      params:
+        - product_id
+    - name: update_stock
+      path: /api/stock
+      method: POST
+      body:
+        - product_id
+        - delta
+
+# Add operational notes or runbook entries below as needed.
